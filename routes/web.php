@@ -1,50 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Volleyball;
+use App\Http\Controllers\VolleyballController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {});
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get('/volleyballs', [VolleyballController::class, 'index']);
 
-Route::get('/Home', function () {
-    return view('Home');
-});
+Route::get('/volleyballs/create', [VolleyballController::class, 'create']);
 
-Route::get('/volleyballs', function () {
-    $volleyballs = Volleyball::all();
-    return view('index',["volleyballs" => $volleyballs]);
-});
+Route::get('/volleyballs/{id}', [VolleyballController::class, 'show']);
 
-Route::get('/volleyballs/create', function () {
-    return view('create');
-});
+Route::post('/volleyballs', [VolleyballController::class, 'store']);
 
-
-
-Route::get('/volleyballs/{id}', function ($id) {
-    $volleyball = Volleyball::findOrFail($id);
-    return view('show', ['volleyball' => $volleyball]);
-});
-
-Route::post('/volleyballs', function () {
-    //Valider les données
-    request()->validate([
-        'name' => 'required|string|min:4|max:50',
-        'price' => 'required|decimal:2',
-        'picture' => 'string',
-        'description' => 'required|string',
-    ]);
-
-    $s = new Volleyball();
-    $s->name = request('name');
-    $s->price = request('price')*100;
-    $s->picture = request('picture');
-    $s->description = request('description');
-    $s->save();
-    return redirect('/volleyballs/' . $s->id);
-});
