@@ -12,14 +12,16 @@ class VolleyballController extends Controller
         return view('index',compact('volleyballs'));
     }
 
+
     public function create() {
         return view('create');
     }
 
-    public function show($id) {
-        $volleyball = Volleyball::findOrFail($id);
+
+    public function show(Volleyball $volleyball) {
         return view('show', compact('volleyball'));
     }
+
 
     public function store() {
         //Valider les données
@@ -39,12 +41,13 @@ class VolleyballController extends Controller
         return redirect('/volleyballs/' . $s->id);
     }
 
-    public function edit($id) {
-        $volleyball = Volleyball::findOrFail($id);
+
+    public function edit(Volleyball $volleyball) {
         return view('edit', compact('volleyball'));
     }
 
-    public function update($id) {
+
+    public function update(Volleyball $volleyball) {
         //Valider les données
         request()->validate([
             'name' => 'required|string|min:4|max:50',
@@ -53,17 +56,16 @@ class VolleyballController extends Controller
             'description' => 'required|string',
         ]);
 
-        $s = Volleyball::findOrFail($id);
-        $s->name = request('name');
-        $s->price = request('price')*100;
-        $s->picture = request('picture');
-        $s->description = request('description');
-        $s->save();
-        return redirect('/volleyballs/' .$id);
+        $volleyball->name = request('name');
+        $volleyball->price = request('price')*100;
+        $volleyball->picture = request('picture');
+        $volleyball->description = request('description');
+        $volleyball->save();
+        return redirect('/volleyballs/' .$volleyball->id);
     }
 
-    public function destroy($id) {
-        Volleyball::destroy($id);
+    public function destroy(Volleyball $volleyball) {
+        $volleyball->delete();
         return redirect('/volleyballs');
     }
 }

@@ -8,6 +8,7 @@
         form {
             max-width: 400px;
             margin: auto;
+            
         }
         label {
             display: block;
@@ -28,7 +29,7 @@
 
 
 
-    <h1>Create a New Volley-ball</h1>
+    <h1  style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">Create a New Volley-ball</h1>
 
     <form action="/volleyballs" method="POST">
 
@@ -62,7 +63,7 @@
             <div style="color: red;">{{ $message }}</div>
         @enderror
 
-        <button type="submit">Create Volleyball</button>
+        <button type="submit" >Create Volleyball</button>
     </form>
 </body>
 </html>

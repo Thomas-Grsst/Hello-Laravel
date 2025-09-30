@@ -15,32 +15,45 @@
 		}
 	</style>
 </head>
-<body style="display: flex; justify-content: center; align-items: center;">
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Detail</th>
-			<th>Delete</th>
-		</tr>
-		@foreach ($volleyballs as $volleyball)
-		<tr>
-			<td>{{ $volleyball->id }}</td>
-			<td>{{ $volleyball->name }}</td>
-			<td>{{ $volleyball->price }}</td>
-			<td><a href="/volleyballs/{{ $volleyball->id }}">View Details</a></td>
-			<td>
-				<form method="POST" action="/volleyballs/{{$volleyball->id}}">
-					@method('DELETE')
-					@csrf
+<body>
+	<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Detail</th>
+				<th>Delete</th>
+			</tr>
+			@forelse ($volleyballs as $volleyball)
+			<tr>
+				<td>{{ $volleyball->id }}</td>
+				<td>{{ $volleyball->name }}</td>
+				<td>{{ $volleyball->price }}</td>
+				<td><a href="/volleyballs/{{ $volleyball->id }}">View Details</a></td>
+				<td>
+					<form method="POST" action="/volleyballs/{{$volleyball->id}}">
+						@method('DELETE')
+						@csrf
 
 
-					<button>Remove</button>
-				</form>
-			</td>
-		</tr>
-		@endforeach
-	</table>
+						<button>Remove</button>
+					</form>
+
+					
+				</td>
+			</tr>
+
+			@empty
+			<tr>
+				<td colspan="5" style="text-align: center;">No volleyballs available.</td>
+			</tr>
+
+			@endforelse
+		</table>
+	</div>
+	<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+		<a href="volleyballs/create" style="margin: 10px; background-color: lightgray; padding: 10px; text-decoration: none; color: black; border-radius: 10px">ADD</a>
+	</div>
 </body>
 </html>

@@ -9,12 +9,12 @@ Route::get('/volleyballs', [VolleyballController::class, 'index']);
 
 Route::get('/volleyballs/create', [VolleyballController::class, 'create']);
 
-Route::get('/volleyballs/{id}', [VolleyballController::class, 'show']);
+Route::get('/volleyballs/{volleyball}', [VolleyballController::class, 'show']);
 
 Route::post('/volleyballs', [VolleyballController::class, 'store']);
 
-Route::get('/volleyballs/{id}/edit', [VolleyballController::class, 'edit']);
+Route::get('/volleyballs/{volleyball}/edit', [VolleyballController::class, 'edit']);
 
-Route::patch('/volleyballs/{id}', [VolleyballController::class, 'update']);
+Route::patch('/volleyballs/{volleuball}', [VolleyballController::class, 'update']);
 
-Route::delete('/volleyballs/{id}', [VolleyballController::class, 'destroy']);
+Route::delete('/volleyballs/{volleyball}', [VolleyballController::class, 'destroy']);
