@@ -18,7 +18,7 @@ class VolleyballController extends Controller
 
     public function show($id) {
         $volleyball = Volleyball::findOrFail($id);
-        return view('show', compact('volleyballs'));
+        return view('show', compact('volleyball'));
     }
 
     public function store() {
@@ -59,6 +59,11 @@ class VolleyballController extends Controller
         $s->picture = request('picture');
         $s->description = request('description');
         $s->save();
-        return redirect('/volleyballs/' . $s->id);
+        return redirect('/volleyballs/' .$id);
+    }
+
+    public function destroy($id) {
+        Volleyball::destroy($id);
+        return redirect('/volleyballs');
     }
 }

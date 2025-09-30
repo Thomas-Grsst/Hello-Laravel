@@ -8,19 +8,21 @@
 		table, th, td {
 			border: 1px solid black;
 			border-collapse: collapse;
+			background-color: lightgrey;
 		}
 		th, td {
 			padding: 10px;
 		}
 	</style>
 </head>
-<body>
+<body style="display: flex; justify-content: center; align-items: center;">
 	<table>
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
 			<th>Price</th>
 			<th>Detail</th>
+			<th>Delete</th>
 		</tr>
 		@foreach ($volleyballs as $volleyball)
 		<tr>
@@ -28,6 +30,15 @@
 			<td>{{ $volleyball->name }}</td>
 			<td>{{ $volleyball->price }}</td>
 			<td><a href="/volleyballs/{{ $volleyball->id }}">View Details</a></td>
+			<td>
+				<form method="POST" action="/volleyballs/{{$volleyball->id}}">
+					@method('DELETE')
+					@csrf
+
+
+					<button>Remove</button>
+				</form>
+			</td>
 		</tr>
 		@endforeach
 	</table>

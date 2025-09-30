@@ -6,6 +6,8 @@
 	<title>Volleyball</title>
     <style>
         table, th, td {
+			
+			background-color: lightgray;
             border: 1px solid black;
             border-collapse: collapse;
         }
@@ -19,7 +21,7 @@
             }
     </style>
 </head>
-<body>
+<body style="display: flex; justify-content: center; align-items: center;">
 	<table>
 		<tr>
 			<th>ID</th>
