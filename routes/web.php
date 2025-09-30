@@ -13,3 +13,4 @@ Route::get('/volleyballs/{id}', [VolleyballController::class, 'show']);
 
 Route::post('/volleyballs', [VolleyballController::class, 'store']);
 
+Route::get('/volleyballs/{id}/edit', [VolleyballController::class, 'edit']);
